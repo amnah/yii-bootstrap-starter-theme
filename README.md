@@ -3,7 +3,8 @@ bootstrap
 
 This is for getting you set up with Twitter's bootstrap quickly. All you need to do is
 
-1) Put the files into the Yii application at themes\bootstrap\
+1) Put the files into the Yii application at `themes\bootstrap\`
+
 2) Add theme info into main configuration
 
     
