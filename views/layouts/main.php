@@ -8,12 +8,13 @@
 
     <!-- Le styles -->
     <!-- NOTE: keep the order like this (bootstrap and then main) -->
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <?php $bootstrapVersion = "2.3.0"; ?>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/<?php echo $bootstrapVersion; ?>/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="<?php echo Yii::app()->theme->baseUrl; ?>/assets/css/main.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
 
@@ -48,16 +49,14 @@
                     'items'=>array(
                         array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
                         array('label'=>'Contact', 'url'=>array('/site/contact')),
-                        array('label'=>"Habits", 'url'=>array('/habit'), 'visible'=>!Yii::app()->user->isGuest),
                     ),
                 )); ?>
 
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'htmlOptions'=>array('class'=>'nav pull-right'),
                     'items'=>array(
-                        array('label'=>'Login', 'url'=>array('/kuser/login'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>'Profile', 'url'=>array('/kuser/profile'), 'visible'=>!Yii::app()->user->isGuest),
-                        array('label'=>"Logout", 'url'=>array('/kuser/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                     ),
                 )); ?>
             </div><!--/.nav-collapse -->
@@ -92,7 +91,10 @@
 </div><!--/.fluid-container-->
 
 <!-- Placed at the end of the document so the pages load faster -->
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+<?php
+// uncomment this if you want jquery loaded on every single page
+//Yii::app()->clientScript->registerCoreScript('jquery');
+?>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/<?php echo $bootstrapVersion; ?>/js/bootstrap.min.js"></script>
 </body>
 </html>
