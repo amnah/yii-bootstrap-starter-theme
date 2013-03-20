@@ -13,11 +13,11 @@ latest css and js files from http://bootstrapcdn.com.**
 
 ## Installation
 
-Put the files into the Yii application at **themes/kbootstrap/**
+* Extract files into the Yii application at **themes/kbootstrap/**
 
 ## Usage
 
-Add theme info into main configuration
+* Add theme info into main configuration
 
 ```php
 return array(
