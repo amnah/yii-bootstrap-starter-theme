@@ -8,7 +8,7 @@
 
     <!-- Le styles -->
     <!-- NOTE: keep the order like this (bootstrap and then main) -->
-    <?php $bootstrapVersion = "2.3.0"; ?>
+    <?php $bootstrapVersion = "2.3.1"; ?>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/<?php echo $bootstrapVersion; ?>/css/bootstrap-combined.min.css" rel="stylesheet">
     <link href="<?php echo Yii::app()->theme->baseUrl; ?>/assets/css/main.css" rel="stylesheet">
 
