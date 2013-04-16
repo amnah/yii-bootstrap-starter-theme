@@ -17,6 +17,15 @@
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+    <!-- Le javascript -->
+    <?php
+        // load jquery and bootstrap scripts
+        Yii::app()->clientScript->registerCoreScript('jquery');
+        Yii::app()->clientScript->registerScriptFile("//netdna.bootstrapcdn.com/twitter-bootstrap/$bootstrapVersion/js/bootstrap.min.js", CClientScript::POS_END);
+
+        // fix jquery.ba-bbq.js for jquery 1.9 (removed $.browser)
+        Yii::app()->clientScript->scriptMap["jquery.ba-bbq.js"] = Yii::app()->theme->baseUrl . "/assets/js/jquery.ba-bbq.js";
+    ?>
 
     <!-- NOTE: Yii uses this title element for its asset manager, so keep it last -->
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -90,11 +99,5 @@
 
 </div><!--/.fluid-container-->
 
-<!-- Placed at the end of the document so the pages load faster -->
-<?php
-// uncomment this if you want jquery loaded on every single page
-//Yii::app()->clientScript->registerCoreScript('jquery');
-?>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/<?php echo $bootstrapVersion; ?>/js/bootstrap.min.js"></script>
 </body>
 </html>
