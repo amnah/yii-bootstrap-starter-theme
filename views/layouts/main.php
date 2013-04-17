@@ -18,10 +18,12 @@
     <![endif]-->
 
     <!-- Le javascript -->
+    <script>var baseUrl = "<?php echo Yii::app()->baseUrl; ?>";</script>
     <?php
-        // load jquery and bootstrap scripts
+        // load main scripts
         Yii::app()->clientScript->registerCoreScript('jquery');
         Yii::app()->clientScript->registerScriptFile("//netdna.bootstrapcdn.com/twitter-bootstrap/$bootstrapVersion/js/bootstrap.min.js", CClientScript::POS_END);
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl . "/assets/js/main.js", CClientScript::POS_END);
 
         // fix jquery.ba-bbq.js for jquery 1.9 (removed $.browser)
         Yii::app()->clientScript->scriptMap["jquery.ba-bbq.js"] = Yii::app()->theme->baseUrl . "/assets/js/jquery.ba-bbq.js";
