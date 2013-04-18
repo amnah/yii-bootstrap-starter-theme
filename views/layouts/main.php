@@ -40,7 +40,7 @@
         <div class="container-fluid">
 
             <!-- NAV COLLAPSE -->
-            <?php $collapse = false; ?>
+            <?php $collapse = true; ?>
             <!-- NAV COLLAPSE -->
 
             <?php if ($collapse): ?>
