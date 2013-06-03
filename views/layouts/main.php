@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,12 +21,16 @@
     <script>var baseUrl = "<?php echo Yii::app()->baseUrl; ?>";</script>
     <?php
         // load main scripts
+        Yii::app()->clientScript->scriptMap["jquery.js"] = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js";
+        Yii::app()->clientScript->scriptMap["jquery.min.js"] = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js";
+        Yii::app()->clientScript->scriptMap["jquery-ui.min.js"] = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js";
         Yii::app()->clientScript->registerCoreScript('jquery');
         Yii::app()->clientScript->registerScriptFile("//netdna.bootstrapcdn.com/twitter-bootstrap/$bootstrapVersion/js/bootstrap.min.js", CClientScript::POS_END);
         Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl . "/assets/js/main.js", CClientScript::POS_END);
 
-        // fix jquery.ba-bbq.js for jquery 1.9 (removed $.browser)
-        Yii::app()->clientScript->scriptMap["jquery.ba-bbq.js"] = Yii::app()->theme->baseUrl . "/assets/js/jquery.ba-bbq.js";
+        // fix jquery.ba-bbq.js for jquery 1.9+ (removed $.browser)
+        // https://github.com/joshlangner/jquery-bbq/blob/master/jquery.ba-bbq.min.js
+        Yii::app()->clientScript->scriptMap["jquery.ba-bbq.js"] = Yii::app()->theme->baseUrl . "/assets/js/jquery.ba-bbq.min.js";
     ?>
 
     <!-- NOTE: Yii uses this title element for its asset manager, so keep it last -->
@@ -87,7 +91,37 @@
     <?php endif?>
 
     <div id="main-content">
-        <?php echo $content; ?>
+
+        <?php if (!$this->menu): ?>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <?php echo $content; ?>
+                </div>
+            </div>
+
+        <?php else: ?>
+
+            <div class="row-fluid">
+                <div class="span3">
+                    <?php
+                        $this->beginWidget('zii.widgets.CPortlet', array(
+                            'contentCssClass'=>'well sidebar-nav',
+                        ));
+                        $this->widget('zii.widgets.CMenu', array(
+                            'items'=>$this->menu,
+                            'htmlOptions'=>array('class'=>'nav nav-list'),
+                        ));
+                        $this->endWidget();
+                    ?>
+                </div>
+
+                <div class="span9">
+                    <?php echo $content; ?>
+                </div>
+            </div>
+
+        <?php endif; ?>
     </div>
 
     <hr>
