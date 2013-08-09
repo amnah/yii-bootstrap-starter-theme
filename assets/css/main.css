@@ -1,76 +1,7 @@
 
-
-
-/* -------------------------------------- */
-/* Custom styling to make yii's template look decent
-/* -------------------------------------- */
-
-body {
-    padding: 20px;
-}
-
-.navbar {
-    margin: 0;
-}
-
-.navbar-inner {
-    padding: 0px;
-}
-
-.navbar-inner ul li span {
-    display: block;
-    padding: 10px 10px 11px;
-}
-
-a.brand {
-    margin-right: 50px;
-}
-
-div.breadcrumbs {
-    margin-top: 10px;
-    background: none;
-    border: 0;
-}
-
-#main-content {
-    margin-top: 20px;
-}
-
-.hero-unit {
-    padding: 10px;
-}
-.hero-unit p {
-    font-size: 18px;
-}
-
-.sidebar-nav {
-    padding: 9px 0;
-}
-
-div.form .row {
-    margin-left: 0px;
-}
-
-label {
-    display: inline;
-}
-
-.list-view .view {
-    border: 1px solid #c9e0ed;
-    padding: 10px;
-}
-
-footer p.benchmark{
-
-}
-
-div.ui-datepicker{
-    font-size:11px;
-}
-
 /* -------------------------------------- */
 /* Form styling
-/* Taking from yii's  default style main.css
+/* Taken from yii's  default style main.css + form.css
 /* -------------------------------------- */
 
 div.form

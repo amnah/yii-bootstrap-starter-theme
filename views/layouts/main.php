@@ -1,3 +1,27 @@
+
+<?php
+
+// setup and urls
+$bootstrapVersion = "3.0.0-rc1";
+$jqueryVersion = "2.0.3";
+$queryUiVersion = "1.10.3";
+
+$cs = Yii::app()->clientScript;
+$cs->scriptMap["jquery.js"] = "//ajax.googleapis.com/ajax/libs/jquery/$jqueryVersion/jquery.min.js";
+$cs->scriptMap["jquery.min.js"] = $cs->scriptMap["jquery.js"];
+$cs->scriptMap["jquery-ui.min.js"] = "//ajax.googleapis.com/ajax/libs/jqueryui/$queryUiVersion/jquery-ui.min.js";
+
+// fix jquery.ba-bbq.js for jquery 1.9+ (removed $.browser)
+// https://github.com/joshlangner/jquery-bbq/blob/master/jquery.ba-bbq.min.js
+$cs->scriptMap["jquery.ba-bbq.js"] = Yii::app()->theme->baseUrl . "/assets/js/jquery.ba-bbq.min.js";
+
+// register js files
+$cs->registerCoreScript('jquery');
+$cs->registerScriptFile("//netdna.bootstrapcdn.com/bootstrap/$bootstrapVersion/js/bootstrap.min.js", CClientScript::POS_END);
+$cs->registerScriptFile(Yii::app()->theme->baseUrl . "/assets/js/main.js", CClientScript::POS_END);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,32 +30,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
-    <!-- NOTE: keep the order like this (bootstrap and then main) -->
-    <?php $bootstrapVersion = "2.3.1"; ?>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/<?php echo $bootstrapVersion; ?>/css/bootstrap-combined.min.css" rel="stylesheet">
+    <!-- css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/<?php echo $bootstrapVersion; ?>/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo Yii::app()->theme->baseUrl; ?>/assets/css/main.css" rel="stylesheet">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- html shim -->
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Le javascript -->
+    <!-- javascript -->
     <script>var baseUrl = "<?php echo Yii::app()->baseUrl; ?>";</script>
-    <?php
-        // load main scripts
-        Yii::app()->clientScript->scriptMap["jquery.js"] = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js";
-        Yii::app()->clientScript->scriptMap["jquery.min.js"] = "//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js";
-        Yii::app()->clientScript->scriptMap["jquery-ui.min.js"] = "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js";
-        Yii::app()->clientScript->registerCoreScript('jquery');
-        Yii::app()->clientScript->registerScriptFile("//netdna.bootstrapcdn.com/twitter-bootstrap/$bootstrapVersion/js/bootstrap.min.js", CClientScript::POS_END);
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl . "/assets/js/main.js", CClientScript::POS_END);
-
-        // fix jquery.ba-bbq.js for jquery 1.9+ (removed $.browser)
-        // https://github.com/joshlangner/jquery-bbq/blob/master/jquery.ba-bbq.min.js
-        Yii::app()->clientScript->scriptMap["jquery.ba-bbq.js"] = Yii::app()->theme->baseUrl . "/assets/js/jquery.ba-bbq.min.js";
-    ?>
 
     <!-- NOTE: Yii uses this title element for its asset manager, so keep it last -->
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -39,48 +48,70 @@
 
 <body>
 
-<div class="navbar">
-    <div class="navbar-inner">
-        <div class="container-fluid">
+<div class="navbar navbar-static-top">
 
-            <!-- NAV COLLAPSE -->
-            <?php $collapse = true; ?>
-            <!-- NAV COLLAPSE -->
+    <div class="container">
 
-            <?php if ($collapse): ?>
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" href="javascript:void(0);">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-            <?php endif; ?>
+        <!-- NAV COLLAPSE -->
+        <?php $collapse = true; ?>
+        <!-- NAV COLLAPSE -->
 
-            <?php echo CHtml::link(Yii::app()->name, array("/site/index"), array("class"=>"brand")); ?>
+        <?php if ($collapse): ?>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <?php endif; ?>
 
-            <div class="<?php echo $collapse ? "nav-collapse" : "nav"; ?>">
-                <!-- main nav -->
-                <?php $this->widget('zii.widgets.CMenu',array(
-                    'htmlOptions'=>array('class'=>'nav'),
-                    'items'=>array(
-                        array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                        array('label'=>'Contact', 'url'=>array('/site/contact')),
-                    ),
-                )); ?>
+        <a class="navbar-brand" href="<?php echo Yii::app()->baseUrl; ?>"><?php echo Yii::app()->name; ?></a>
 
-                <?php $this->widget('zii.widgets.CMenu',array(
-                    'htmlOptions'=>array('class'=>'nav pull-right'),
-                    'items'=>array(
-                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-                    ),
-                )); ?>
-            </div><!--/.nav-collapse -->
+        <div class="<?php echo $collapse ? "nav-collapse collapse" : "nav"; ?>">
+            <!-- main nav -->
+            <?php $this->widget('zii.widgets.CMenu',array(
+                'htmlOptions'=>array('class'=>'nav navbar-nav'),
+                'items'=>array(
+                    array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+                    array('label'=>'Contact', 'url'=>array('/site/contact')),
+                ),
+            )); ?>
 
-        </div>
+            <?php $this->widget('zii.widgets.CMenu',array(
+                'htmlOptions'=>array('class'=>'nav navbar-nav pull-right'),
+                'items'=>array(
+                    array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                    array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+                ),
+            )); ?>
+
+            <?php /*
+            <ul class="nav navbar-nav pull-right">
+
+
+                <?php if (Yii::app()->user->isGuest): ?>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Log in <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><form class="navbar-form form-inline pull-right">
+                                    <input type="text" placeholder="Email">
+                                    <input type="password" placeholder="Password">
+                                    <button type="submit" class="btn">Sign in</button>
+                                </form></li>
+                        </ul>
+
+                    </li>
+                <?php else: ?>
+                    <?php $username = Yii::app()->user->name; ?>
+                    <li><?php echo CHtml::link("Logout ($username)", array("/site/logout")); ?></li>
+                <?php endif; ?>
+            </ul>
+            */ ?>
+        </div><!--/.nav-collapse -->
     </div>
 </div>
 
-<div class="container-fluid">
+
+<div class="container">
 
     <?php // NOTE: this does not use bootstrap's breadcrumbs component because CBreadcrumbs doesn't use UL/LI ?>
     <?php // You can implement it yourself or use Chris83's - http://www.yiiframework.com/extension/bootstrap/ ?>
@@ -94,34 +125,33 @@
 
         <?php if (!$this->menu): ?>
 
-            <div class="row-fluid">
-                <div class="span12">
+            <div class="row">
+                <div class="col-lg-12">
                     <?php echo $content; ?>
                 </div>
             </div>
 
         <?php else: ?>
 
-            <div class="row-fluid">
-                <div class="span3">
-                    <?php
-                        $this->beginWidget('zii.widgets.CPortlet', array(
-                            'contentCssClass'=>'well sidebar-nav',
-                        ));
-                        $this->widget('zii.widgets.CMenu', array(
-                            'items'=>$this->menu,
-                            'htmlOptions'=>array('class'=>'nav nav-list'),
-                        ));
-                        $this->endWidget();
-                    ?>
+            <div class="row">
+                <div class="col-lg-10">
+                    <?php echo $content; ?>
                 </div>
 
-                <div class="span9">
-                    <?php echo $content; ?>
+                <div class="col-lg-2 panel panel-info">
+                    <div class="panel-heading">Operations</div>
+                    <?php
+                    $this->widget('zii.widgets.CMenu', array(
+                        'items'=>$this->menu,
+                        'htmlOptions'=>array('class'=>'nav nav-pills nav-stacked'),
+                    ));
+                    ?>
                 </div>
             </div>
 
         <?php endif; ?>
+
+
     </div>
 
     <hr>
@@ -133,7 +163,7 @@
         </p>
     </footer>
 
-</div><!--/.fluid-container-->
+</div> <!-- /container -->
 
 </body>
 </html>
