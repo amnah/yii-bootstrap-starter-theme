@@ -1,7 +1,6 @@
 {
-    "name": "amnah/yii-bootstrap-starter-theme",
-    "type": "yii-theme",
-    "description": "Yii Bootstrap 3 starter theme",
+    "name": "Yii Bootstrap Starter Theme",
+    "description": "Yii - Bootstrap 3 Starter Theme",
     "keywords": ["yii","bootstrap"],
     "homepage": "https://github.com/amnah/yii-bootstrap-starter-theme",
     "license": "MIT",
@@ -9,8 +8,5 @@
         {
             "name": "amnah"
         }
-    ],
-    "config": {
-	  "vendor-dir": "themes"
-	}
+    ]
 }
