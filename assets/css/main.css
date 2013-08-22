@@ -1,7 +1,8 @@
 
 /* -------------------------------------- */
-/* Form styling
-/* Taken from yii's  default style main.css + form.css
+/* Temporary styling taken from yii's default style main.css + form.css
+/* You will probably want to delete all of these and modify the view
+/* code to use proper bootstrap syntax
 /* -------------------------------------- */
 
 div.form
@@ -20,7 +21,6 @@ div.form fieldset
     border: 1px solid #DDD;
     padding: 10px;
     margin: 0 0 10px 0;
-    -moz-border-radius:7px;
 }
 
 div.form label
@@ -178,8 +178,6 @@ div.form.login p
 {
     margin: 0 0 10px 0;
 }
-
-
 
 
 
