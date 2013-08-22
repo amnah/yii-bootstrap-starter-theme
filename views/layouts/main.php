@@ -1,7 +1,6 @@
-
 <?php
 
-// setup and urls
+// setup versions
 $bootstrapVersion = "3.0.0";
 $fontAwesomeVersion = "3.2.1";
 $jqueryVersion = "2.0.3";
