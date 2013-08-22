@@ -14,7 +14,7 @@ latest css and js files from http://bootstrapcdn.com.**
 
 ## Installation
 
-* Extract files into the Yii application at **themes/<name of theme>/**
+* Extract files into the Yii application at **themes/[name of theme]/**
 
 ## Usage
 
@@ -24,7 +24,7 @@ latest css and js files from http://bootstrapcdn.com.**
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name'=>'My Web Application',
-    'theme'=>'<name of theme>', // THIS LINE HERE
+    'theme'=>'[name of theme]', // THIS LINE HERE
 ```
 
 * Update versions if desired (in **views/layouts/main.php**)
