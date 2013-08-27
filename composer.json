@@ -1,8 +1,8 @@
 {
-    "name": "amnah/yii-bootstrap-starter-theme",
+    "name": "amnah/yiiBootstrapStarterTheme",
     "description": "Yii - Bootstrap 3 Starter Theme",
     "keywords": ["yii","bootstrap"],
-    "homepage": "https://github.com/amnah/yii-bootstrap-starter-theme",
+    "homepage": "https://github.com/amnah/yiiBootstrapStarterTheme",
     "license": "MIT",
     "authors": [
         {
